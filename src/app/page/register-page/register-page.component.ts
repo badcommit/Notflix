@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Router} from "@angular/router";
+import {IRouterUrlConstant} from "../../constant";
+import {ROUTER_URL_CONSTANT} from "../../service/token/router-constant.token.service";
 
 @Component({
   selector: 'app-register-page',
@@ -9,16 +11,16 @@ import {Router} from "@angular/router";
 export class RegisterPageComponent {
   step = 1
 
-  constructor(private router: Router) {
+  constructor(private router: Router,  @Inject(ROUTER_URL_CONSTANT) private url_constant: IRouterUrlConstant) {
   }
-  signIn() {
-
+  async signIn() {
+    await this.router.navigate([this.url_constant.LOGIN])
   }
   nextStep(){
     this.step += 1
   }
 
-  home(){
-    this.router.navigate([""])
+  async home(){
+    await this.router.navigate([this.url_constant.HOME])
   }
 }

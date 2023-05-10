@@ -1,0 +1,64 @@
+
+<div style="display: flex; align-items: center; flex-direction: column">
+  <div>
+  <p>STEP 3 OF 3</p>
+  <h1>Choose the plan that's right for you</h1>
+  <div>
+  <div style="display: flex; align-items: center; gap: 10px">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="checkmark-group--icon" data-name="Checkmark" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z" fill="red"></path></svg>
+    <p>
+      Watch all you want.
+    </p>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 10px">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="checkmark-group--icon" data-name="Checkmark" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z" fill="red"></path></svg>
+    <p>
+      Recommendations just for you.
+    </p>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 10px">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="checkmark-group--icon" data-name="Checkmark" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z" fill="red"></path></svg>
+    <p>
+      Change or cancel your plan anytime
+    </p>
+  </div>
+
+  </div>
+    <div style="display: flex; flex-direction: row; justify-content: flex-end">
+      <div *ngFor="let plan of sub_plan" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center" (click)="select(plan)">
+        <button mat-flat-button color="warn"  style="width: 100px; height:100px; margin: 20px 20px 0;word-break: normal" [style.background-color]="selected === plan ? 'red' : 'rgba(255, 99, 71, 0.5)'" >{{plan.name}}
+        </button>
+        <div class="arrow-down" *ngIf="plan === selected"></div>
+      </div>
+
+    </div>
+    <table style="border-collapse: collapse;">
+      <tbody>
+      <tr  *ngFor="let key_desc of descs" style="border-bottom: 1px solid black; ">
+        <td style="padding-right:20px">
+          {{key_desc[1].desc}}
+        </td>
+        <td *ngFor="let plan of sub_plan" style="padding: 20px; width: 100px; text-align: center" [style.color]="selected === plan ? 'red' : 'black'">
+          <span *ngIf="key_desc[1].type !== 'boolean' ">
+            {{key_desc[1].pre_unit}}{{plan[key_desc[0]]}}
+          </span>
+          <div *ngIf="key_desc[1].type === 'boolean'">
+            <span *ngIf="plan[key_desc[0]]">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="checkmark-group--icon" data-name="Checkmark" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.68239 19.7312L23.6824 5.73115L22.3178 4.26904L8.02404 17.6098L2.70718 12.293L1.29297 13.7072L7.29297 19.7072C7.67401 20.0882 8.28845 20.0988 8.68239 19.7312Z" [style.fill]="selected === plan ? 'red' : 'black'"></path></svg>
+            </span>
+            <span *ngIf="!plan[key_desc[0]]">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="planGrid__booleanGraphic planGrid__booleanGraphic--isX" data-name="Minus" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 13L-1.74846e-07 13L0 11L24 11L24 13Z" [style.fill]="selected === plan ? 'red' : 'black'"></path></svg>
+            </span>
+
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <button mat-flat-button color="warn" style="width: 500px; margin-top: 20px; height: 50px" (click)="next()" >Next
+  </button>
+
+</div>

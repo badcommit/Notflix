@@ -1,25 +1,33 @@
-<div class="register-1" style="display: flex; justify-content: center">
+<div class="register-step">
 
 
-  <div style=" padding: 50px; max-width:500px">
+  <div class="step-desc">
     STEP 1 OF 3
-    <h1 style="">Create a password to start your membership</h1>
+    <h1>Create a password to start your membership</h1>
     <p>Just a few more steps and you're done!
       We hate paperwork, too.</p>
-    <form class="example-form">
-      <mat-form-field class="example-full-width" style="width: 100%">
-        <mat-label>Email or phone number</mat-label>
-        <input matInput placeholder="xx@xx" value="">
+    <form class="user-form" [formGroup]="regform">
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="xx@xx" name="email" value="" formControlName="email">
+        <mat-spinner *ngIf="email.pending" matSuffix diameter="16" style="display: inline-flex"></mat-spinner>
+        <mat-hint *ngIf="email?.invalid && email?.touched && email?.hasError('required')" style="color:red">
+          Email is Required
+        </mat-hint>
+        <mat-hint *ngIf="email?.invalid && email?.touched && email?.hasError('emailExists')" style="color:red">
+          Email Exists
+        </mat-hint>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width" style="width: 100%">
+      <mat-form-field class="example-full-width" >
         <mat-label>Password</mat-label>
-        <input type="password" matInput placeholder="">
+        <input type="password" matInput placeholder="" formControlName="password">
+        <mat-hint *ngIf="password?.invalid && password?.touched" style="color:red">
+          Password is Required
+        </mat-hint>
       </mat-form-field>
-      <button mat-flat-button color="warn"
-              style="width: 100%; height: 50px" (click)="next()" >Next
+      <button mat-flat-button color="warn" (click)="next()" [disabled] ="!regform.valid" >Next
       </button>
     </form>
-
   </div>
 </div>

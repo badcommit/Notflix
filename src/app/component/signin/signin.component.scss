@@ -1,0 +1,25 @@
+.signin {
+  display: flex; justify-content: center;
+
+  .content {
+    background-color: rgba(0, 0, 0, 0.7); padding: 50px; max-width:500px;
+    color: white;
+  }
+
+  .signin-form {
+    button {
+      width: 500px;
+      height: 50px
+    }
+  }
+
+  .form-description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .need-help {
+      color: rgba(200,200,200, 0.8)
+    }
+  }
+}

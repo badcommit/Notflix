@@ -1,23 +1,19 @@
-<div class="register-1" style="display: flex; justify-content: center">
-
-
-  <div style=" padding: 50px; max-width:500px">
+<div class="register-step">
+  <div class="step-desc">
     STEP 2 OF 3
-    <h1 style="">Create a Username && Add your Tmdb Api_Key </h1>
+    <h1>Create a Username && Add your Tmdb Api_Key </h1>
     <p>Just a few more steps and you're done!
       We hate paperwork, too.</p>
-    <form class="example-form">
-      <mat-form-field class="example-full-width" style="width: 100%">
+    <form class="tmdb-form">
+      <mat-form-field class="example-full-width">
         <mat-label>Role</mat-label>
         <input matInput placeholder="xx@xx" value="">
       </mat-form-field>
-
-      <mat-form-field class="example-full-width" style="width: 100%">
+      <mat-form-field class="example-full-width">
         <mat-label>TMDB Key</mat-label>
         <input matInput placeholder="tmdb_key">
       </mat-form-field>
-      <button mat-flat-button color="warn"
-              style="width: 100%; height: 50px"  >Next
+      <button mat-flat-button color="warn" (click)="next()">Next
       </button>
     </form>
 
