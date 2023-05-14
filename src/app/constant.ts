@@ -1,7 +1,7 @@
 import {InjectionToken} from "@angular/core";
 
 export const routerUrlConstant = {
-  HOME: "",
+  HOME: "home",
   LOGIN: "login",
   REGISTER: "register",
   MOVIELIST: 'movies'
