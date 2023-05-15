@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MovieService} from "../../core/service/movie/movie.service";
+import {MovielistService} from "../../core/service/movie/movielist.service";
 import {Subscription} from "rxjs";
 import {Movie} from "../../core/service/movie";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-movielist-page',
@@ -13,7 +14,9 @@ export class MovielistPageComponent implements OnInit, OnDestroy{
   movieListSubscription!: Subscription
   movies: Movie[] = []
 
-  constructor(private movieService: MovieService) {
+  loadingStatus: {[key: number]: boolean} = {}
+
+  constructor(private movieService: MovielistService, private router: Router) {
 
   }
   ngOnInit() {
@@ -21,7 +24,13 @@ export class MovielistPageComponent implements OnInit, OnDestroy{
       this.movies = v
     })
 
-    this.movieService.load()
+    this.movieService.loadMovieList()
+  }
+
+  async select(movie: Movie){
+    this.loadingStatus[movie.id] = true
+    await this.router.navigate([`/movie/${movie.id}`])
+    this.loadingStatus[movie.id] = false
   }
 
   ngOnDestroy(){

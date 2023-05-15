@@ -1,7 +1,8 @@
 <div class="signin">
   <div class="content">
     <h1>Sign In</h1>
-    <form class="signin-form" [formGroup]="signInForm" >
+
+    <form class="signin-form" [formGroup]="signInForm" (ngSubmit)="submit()">
       <mat-form-field class="example-full-width" style="width: 100%">
         <mat-label>Email or phone number</mat-label>
         <input matInput placeholder="user@email.address" value="" name="email" formControlName="email">
@@ -17,7 +18,7 @@
         </mat-hint>
       </mat-form-field>
 
-      <button mat-flat-button color="warn">Sign in
+      <button mat-flat-button color="warn" type="submit" [disabled] ="!signInForm.valid">Sign in
       </button>
     </form>
     <div  class="form-description">

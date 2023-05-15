@@ -8,16 +8,21 @@ import {MatTableModule} from "@angular/material/table";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {BlackHeaderComponent} from './layout/black-header/black-header.component';
+import {HeaderComponent} from './layout/header/header.component';
 import {RouterLink, RouterOutlet} from "@angular/router";
+import { PageBgComponent } from './layout/page-bg/page-bg.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {CoreModule} from "../core/core.module";
 
 
 @NgModule({
   declarations: [
-    BlackHeaderComponent
+    HeaderComponent,
+    PageBgComponent,
   ],
   imports: [
     CommonModule,
+    CoreModule,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
@@ -35,10 +40,11 @@ import {RouterLink, RouterOutlet} from "@angular/router";
     MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
-    HttpClientModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    BlackHeaderComponent,
+    HeaderComponent,
+    PageBgComponent,
+    MatDialogModule
   ]
 })
 export class SharedModule {

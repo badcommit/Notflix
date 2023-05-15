@@ -1,0 +1,12 @@
+<div style="display: flex; flex-direction: row; gap: 50px; align-items: center; background-color: black; justify-content: center" *ngIf="videoIds.length > 0 && videoIndex !== null;" >
+
+  <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="prev()" >
+    <mat-icon>keyboard_arrow_left </mat-icon>
+  </button>
+
+<app-movie-trailer [videoId]="videoIds[videoIndex]"></app-movie-trailer>
+
+  <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="next()">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>

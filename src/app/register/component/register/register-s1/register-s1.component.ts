@@ -1,8 +1,14 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {debounceTime, distinctUntilChanged, Observable, of, take} from "rxjs";
-import {ApiService} from "../../../../core/service/api/api.service";
+import {debounceTime, Observable, take} from "rxjs";
+
 import { map, switchMap } from 'rxjs/operators';
+import {AuthService} from "../../../../core/service/auth/auth.service";
+
+export type RegForm1 = {
+  email: string,
+  password: string,
+}
 @Component({
   selector: 'app-register-s1',
   templateUrl: './register-s1.component.html',
@@ -10,10 +16,10 @@ import { map, switchMap } from 'rxjs/operators';
 })
 export class RegisterS1Component implements OnInit{
   @Output()
-  nextStep: EventEmitter<void> = new EventEmitter<void>()
+  nextStep: EventEmitter<RegForm1> = new EventEmitter<RegForm1>()
 
   regform!: FormGroup
-  constructor(private fb: FormBuilder, private api: ApiService) {
+  constructor(private fb: FormBuilder, private auth: AuthService) {
   }
 
   ngOnInit() {
@@ -29,7 +35,7 @@ export class RegisterS1Component implements OnInit{
         debounceTime(500),
         take(1),
         switchMap(value => {
-          return this.api.checkEmail(value as string).pipe(
+          return this.auth.checkEmail(value as string).pipe(
             map((res: boolean) => {
               return res ? {emailExists: true}: null;
             })
@@ -48,9 +54,10 @@ export class RegisterS1Component implements OnInit{
     return this.regform.get('password')!
   }
 
-
-
   next() {
-      this.nextStep.emit()
+      this.nextStep.emit({
+        email: this.email.value!,
+        password: this.password.value!
+      })
   }
 }

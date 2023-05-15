@@ -10,6 +10,9 @@ export class MovieComponent {
   @Input()
   movie!: Movie
 
+  @Input()
+  isLoadingToDetail: boolean = false
+
   constructor() {
   }
 

@@ -1,10 +1,11 @@
-import {InjectionToken} from "@angular/core";
+
 
 export const routerUrlConstant = {
   HOME: "home",
   LOGIN: "login",
   REGISTER: "register",
-  MOVIELIST: 'movies'
+  MOVIELIST: 'movies',
+  MOVIEDETAIL: 'movie',
 }
 
 export type IRouterUrlConstant = typeof routerUrlConstant

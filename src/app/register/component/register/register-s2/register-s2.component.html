@@ -4,16 +4,22 @@
     <h1>Create a Username && Add your Tmdb Api_Key </h1>
     <p>Just a few more steps and you're done!
       We hate paperwork, too.</p>
-    <form class="tmdb-form">
-      <mat-form-field class="example-full-width">
-        <mat-label>Role</mat-label>
-        <input matInput placeholder="xx@xx" value="">
+    <form class="tmdb-form" [formGroup]="form" (ngSubmit)="next()" >
+      <mat-form-field class="example-full-width" >
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" value="" formControlName="username">
+        <mat-hint *ngIf="username?.touched && username?.invalid" style="color:red">
+          {{ username.getError('minLength') ?? '' + ';' + username.getError('required') ??''}}
+        </mat-hint>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>TMDB Key</mat-label>
-        <input matInput placeholder="tmdb_key">
+        <input matInput name="tmdb" placeholder="tmdb_key" formControlName="tmdb_key">
+        <mat-hint *ngIf="tmdb_key?.touched && tmdb_key.invalid" style="color:red">
+          {{ tmdb_key.getError('minLength') ?? ''+ ';' + tmdb_key.getError('required')??''}}
+        </mat-hint>
       </mat-form-field>
-      <button mat-flat-button color="warn" (click)="next()">Next
+      <button type="submit" mat-flat-button color="warn" [disabled]="!form.valid">Next
       </button>
     </form>
 
