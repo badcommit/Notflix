@@ -7,7 +7,8 @@
       <mat-label>Email address</mat-label>
       <input matInput>
     </mat-form-field>
-    <button type="button" mat-flat-button color="warn" [routerLink]="['/register']" >Get Started >
+    <button *ngIf="isLogin$() | async " type="button" mat-flat-button color="warn" [routerLink]="['/movies']" >Get Started ></button>
+      <button *ngIf="!(isLogin$() | async) " type="button" mat-flat-button color="warn" [routerLink]="['/register']" >Get Started >
     </button>
   </form>
 </div>

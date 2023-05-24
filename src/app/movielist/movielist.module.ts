@@ -5,6 +5,7 @@ import {MovielistPageComponent} from "./movielist-page/movielist-page.component"
 import {SharedModule} from "../shared/shared.module";
 import {MovielistRoutingModule} from "./movielist-routing.module";
 import {CoreModule} from "../core/core.module";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 
 @NgModule({
@@ -12,12 +13,13 @@ import {CoreModule} from "../core/core.module";
     MovieComponent,
     MovielistPageComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    MovielistRoutingModule,
-    CoreModule
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        MovielistRoutingModule,
+        CoreModule,
+        InfiniteScrollModule
+    ]
 })
 export class MovielistModule {
 }

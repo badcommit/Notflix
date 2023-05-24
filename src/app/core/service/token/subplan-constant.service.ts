@@ -4,7 +4,7 @@ import {
   plan_prop_description,
   Descriptor,
   SubPlanDetail
-} from "../../../register/component/register/register-s3/subplan";
+} from "../../../shared/components/choose-plan/subplan";
 
 
 export const SUB_PLAN_CONSTANT = new InjectionToken<SubPlanDetail[]>("subplan_confikg", {

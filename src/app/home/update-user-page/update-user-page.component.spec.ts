@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterS3Component } from './register-s3.component';
+import { UpdateUserPageComponent } from './update-user-page.component';
 
-describe('RegisterS3Component', () => {
-  let component: RegisterS3Component;
-  let fixture: ComponentFixture<RegisterS3Component>;
+describe('UpdateUserPageComponent', () => {
+  let component: UpdateUserPageComponent;
+  let fixture: ComponentFixture<UpdateUserPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterS3Component ]
+      declarations: [ UpdateUserPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RegisterS3Component);
+    fixture = TestBed.createComponent(UpdateUserPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

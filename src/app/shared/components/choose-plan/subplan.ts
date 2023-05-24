@@ -1,3 +1,5 @@
+import {ROLE} from "../../../core/service/auth";
+
 export interface SubPlanDetail {
 
   readonly name: string
@@ -10,6 +12,7 @@ export interface SubPlanDetail {
   readonly watch_device: boolean
 
   readonly download: boolean
+  readonly role: ROLE
 }
 
 export type PropDescriptor = {
@@ -61,6 +64,12 @@ export const plan_prop_description: Descriptor<SubPlanDetail> = {
     order: 5,
     hidden: true,
     type: "string"
+  },
+  role: {
+    desc: 'role',
+    order: 6,
+    hidden: true,
+    type: "string"
   }
 }
 
@@ -70,7 +79,8 @@ export const premium: SubPlanDetail = {
   video_quality: "Best",
   watch_device: true,
   download: true,
-  resolution: "4K+HDR"
+  resolution: "4K+HDR",
+  role: "ADMIN"
 }
 
 export const standard: SubPlanDetail = {
@@ -79,7 +89,8 @@ export const standard: SubPlanDetail = {
   video_quality: "Great",
   watch_device: true,
   download: true,
-  resolution: "1080p"
+  resolution: "1080p",
+  role: "SUPERUSER"
 }
 
 export const standardWithAds: SubPlanDetail = {
@@ -88,7 +99,8 @@ export const standardWithAds: SubPlanDetail = {
   video_quality: "Great",
   resolution: "1080p",
   watch_device: true,
-  download: false
+  download: false,
+  role: "USER"
 }
 
 

@@ -5,10 +5,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {routerUrlConstant} from './constant';
-import {availableSubPlan, plan_prop_description} from "./register/component/register/register-s3/subplan";
+import {availableSubPlan, plan_prop_description} from "./shared/components/choose-plan/subplan";
 import {ROUTER_URL_CONSTANT} from "./core/service/token/router-constant.token.service";
 import {SUB_PLAN_CONSTANT, SUB_PLAN_PROP_CONSTANT} from "./core/service/token/subplan-constant.service";
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {SUB_PLAN_CONSTANT, SUB_PLAN_PROP_CONSTANT} from "./core/service/token/su
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    InfiniteScrollModule
   ],
   providers: [
     {

@@ -13,12 +13,14 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import { PageBgComponent } from './layout/page-bg/page-bg.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {CoreModule} from "../core/core.module";
+import {ChoosePlanComponent} from "./components/choose-plan/choose-plan.component";
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     PageBgComponent,
+    ChoosePlanComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import {CoreModule} from "../core/core.module";
     MatProgressSpinnerModule,
     HeaderComponent,
     PageBgComponent,
-    MatDialogModule
+    MatDialogModule,
+    ChoosePlanComponent
   ]
 })
 export class SharedModule {

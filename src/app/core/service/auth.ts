@@ -1,18 +1,18 @@
-
+export type ROLE = 'USER' | 'ADMIN' | "SUPERUSER"
 export interface AuthResponse {
   readonly  accessToken: string;
-  readonly role: 'USER' | 'ADMIN'
+  readonly role: ROLE
 }
 
 export interface Auth {
 
-  auth: AuthResponse | null
+  authResponse: AuthResponse | null
   username?: string
   email?: string
 }
 
 export const emptyAuth: Auth = {
-  auth: null
+  authResponse: null
 }
 
 export interface RegInfo{

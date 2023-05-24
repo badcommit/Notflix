@@ -8,11 +8,11 @@
       </g>
     </svg>
   </div>
-  <div *ngIf="!auth.auth; else notAuth">
+  <div *ngIf="!auth.authResponse; else Authed">
   <button mat-flat-button color="warn" routerLink="/login">Sign In
   </button>
   </div>
-  <ng-template #notAuth>
+  <ng-template #Authed>
     <div style="display: flex; flex-direction: row; align-items: center; gap: 20px">
       <div  style="color: white;">
         {{auth.username}}

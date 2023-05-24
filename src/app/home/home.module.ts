@@ -5,6 +5,7 @@ import {HomeComponent} from "./component/home/home.component";
 import {SigninComponent} from "./component/signin/signin.component";
 import {SharedModule} from "../shared/shared.module";
 import {HomeRoutingModule} from "./home-routing.module";
+import { UpdateUserPageComponent } from './update-user-page/update-user-page.component';
 
 
 
@@ -12,7 +13,8 @@ import {HomeRoutingModule} from "./home-routing.module";
   declarations: [
     HomePageComponent,
     HomeComponent,
-    SigninComponent
+    SigninComponent,
+    UpdateUserPageComponent
   ],
   imports: [
     CommonModule,

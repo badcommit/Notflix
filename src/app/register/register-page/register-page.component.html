@@ -9,8 +9,8 @@
 
   </app-register-s2>
 
-  <app-register-s3 *ngIf="step === 3" [regForm]="regform" >
+  <app-choose-plan *ngIf="step === 3" (planOutput)="finish($event)" >
 
-  </app-register-s3>
+  </app-choose-plan>
 
 </div>

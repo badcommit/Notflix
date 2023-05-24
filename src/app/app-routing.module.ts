@@ -4,6 +4,7 @@ import {routerUrlConstant} from "./constant";
 import {MovieDetailResolver} from "./core/resolver/movie-detail.resolver";
 import {CoreModule} from "./core/core.module";
 import {AuthGuard} from "./core/guard/auth.guard";
+import {RoleGuard} from "./core/guard/role.guard";
 
 const routes: Routes = [
   {
@@ -31,13 +32,16 @@ const routes: Routes = [
     resolve: {
       movieDetail: MovieDetailResolver
     },
-    canActivate: [AuthGuard],
+    data: {
+      requiredRole: ['ADMIN', 'SUPERUSER']
+    },
+    canActivate: [AuthGuard, RoleGuard],
   },
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), CoreModule],
+  imports: [RouterModule.forRoot(routes, { anchorScrolling: 'enabled'}), CoreModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

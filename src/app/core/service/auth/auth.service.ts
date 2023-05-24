@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, catchError, Observable, of, map} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Auth, AuthResponse, emptyAuth, RegInfo} from "../auth";
+import {Auth, AuthResponse, emptyAuth, RegInfo, ROLE} from "../auth";
 import jwt_decode from "jwt-decode";
 
 
@@ -34,14 +34,40 @@ export class AuthService {
         )
         .subscribe((res) => {
           this.auth = res;
-          observer.next(!!res.auth);
+          observer.next(!!res.authResponse);
           observer.complete()
         })
     })
   }
 
+  updateRole(role: ROLE): Observable<boolean>{
+    return new Observable((observer) => {
+      this.http.patch<AuthResponse>(`http://localhost:4231/auth/userupdate`, {role, email: this.auth.email})
+        .pipe(
+          this.decoder(),
+          catchError((err) => {
+            console.error(err)
+            this.auth = emptyAuth;
+            return of(this.auth)
+          })
+        )
+        .subscribe((res) => {
+          this.auth = res;
+
+          observer.next(!!res.authResponse);
+          observer.complete()
+        })
+    })
+
+  }
+  
+
   logout(): void {
     this.auth = emptyAuth;
+  }
+
+  setAuth(auth: Auth){
+    this.auth = auth;
   }
 
   decoder = () => {
@@ -50,8 +76,9 @@ export class AuthService {
         email,
         username,
       } = jwt_decode(r.accessToken) as { email: string, username: string }
+
       return {
-        auth: r,
+        authResponse: r,
         username,
         email,
       }
@@ -70,7 +97,7 @@ export class AuthService {
           })
         ).subscribe(res => {
         this.auth = res;
-        observer.next(!!res.auth);
+        observer.next(!!res.authResponse);
         observer.complete()
       })
     })
@@ -78,8 +105,8 @@ export class AuthService {
 
   set auth(auth: Auth) {
     this._auth = auth
-    this.isAuthenticatedSubject.next(auth);
-    localStorage.setItem('auth', JSON.stringify(auth))
+    this.isAuthenticatedSubject.next(this._auth);
+    localStorage.setItem('auth', JSON.stringify(this._auth))
   }
 
   get auth(): Auth {
@@ -87,7 +114,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.auth.auth !== null;
+    return this.auth.authResponse !== null;
   }
 
   checkEmail(email: string): Observable<boolean> {

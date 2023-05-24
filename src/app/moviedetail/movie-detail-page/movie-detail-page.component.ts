@@ -48,7 +48,7 @@ export class MovieDetailPageComponent implements OnInit, OnDestroy {
     return `url(https://image.tmdb.org/t/p/original${this.detail?.backdrop_path})`
   }
 
-  getImageUrl(post_url: string): string{
+  getImageUrl(post_url: string): string {
     return `https://image.tmdb.org/t/p/original${post_url}`
   }
 
