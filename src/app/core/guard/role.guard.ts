@@ -13,7 +13,6 @@ export class RoleGuard implements CanActivate{
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean  {
     return new Observable((observer) => {
       this.authService.auth$.subscribe((auth) => {
-        console.log(`what is data ${auth.authResponse?.role} ${route.data.requiredRole}`)
         if(route.data.requiredRole && route.data.requiredRole.includes(auth.authResponse?.role)) {
           observer.next(true)
         } else {

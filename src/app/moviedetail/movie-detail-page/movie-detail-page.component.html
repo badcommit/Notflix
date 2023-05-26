@@ -13,7 +13,7 @@
         <h1>
           {{detail?.title}}
         </h1>
-        <div style="display: flex; flex-direction: row; gap: 10px;">
+        <div class="desc" style="display: flex; flex-direction: row; gap: 10px; color: rgba(255, 255, 255, 0.7)">
           <div>
             &#11088;{{detail?.vote_average}} | {{detail?.vote_count}}
           </div>
@@ -21,13 +21,13 @@
             {{detail?.runtime}} mins
           </div>
           <div>
-            ·{{detail?.release_date}}
+             {{detail?.release_date}}
           </div>
         </div>
-        <div>
+        <div class="desc">
           {{detail?.overview}}
         </div>
-        <div>
+        <div class="desc">
           Home page: {{detail?.homepage}}
 
         </div>
@@ -44,10 +44,10 @@
           </div>
         </div>
         <h2>Actors</h2>
-        <div class="actors"  style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap">
-          <div *ngFor="let actor of credit?.cast?.slice(0, 5)">
-            <img alt='image' [src]="getImageUrl(actor.profile_path)" style="width: 100px; height: 150px; object-fit: cover"/>
-            <div style="text-align: center">
+        <div class="actors"  style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap;">
+          <div *ngFor="let actor of credit?.cast?.slice(0, 5)" style="width: 100px">
+            <img alt='image' [src]="getImageUrl(actor.profile_path)" style="width: 100%; height: 150px; object-fit: cover"/>
+            <div style="text-align: center; word-break: break-word;  width: 100%">
               {{actor?.name}}
             </div>
           </div>

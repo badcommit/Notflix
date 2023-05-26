@@ -1,0 +1,15 @@
+.ml {
+  scale: 1;
+  mask-image: linear-gradient(45deg,#fff 25%,rgba(255,255,255,.2) 50%,#fff 75%);
+
+  mask-size: 800%;
+  mask-position: 0;
+  border: 2px solid transparent;
+  &:hover {
+    scale: 1.1;
+    border: 2px solid white;
+    box-shadow: 10px 10px 10px white;
+    transition: all 0.5s ease-in-out;
+    mask-position: 120%;
+  }
+}

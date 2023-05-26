@@ -24,14 +24,8 @@ import {RoleGuard} from "./guard/role.guard";
   ],
   providers: [
     ApiService,
-    MovielistService,
-    MovieDetailService,
-    MovieVideoService,
-    MovieCreditService,
-    MoviePostersService,
     MovieDetailResolver,
     AuthGuard,
-    AuthService,
     RoleGuard,
     {
       provide: HTTP_INTERCEPTORS,

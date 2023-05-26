@@ -4,11 +4,8 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpResponse,
-  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import {flatMap, map, Observable, take, throwError} from 'rxjs';
 import {AuthService} from "../service/auth/auth.service";
 
 @Injectable()
@@ -29,30 +26,23 @@ export class TokenHttpInterceptor implements HttpInterceptor {
     // Modify the request here if needed
     // For example, you can add headers or authentication tokens
     let modifiedRequest = request;
-    console.log("intercept")
-    console.log(request.url)
-    if(this.matchUrl(request.url) && this.authService.auth.authResponse?.accessToken){
-      modifiedRequest = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${this.authService.auth.authResponse?.accessToken}`
-        }
-      });
 
-    }
-    return next.handle(modifiedRequest).pipe(
-      tap((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          // Log or perform additional operations on the response
-          console.log('Response intercepted:', event);
+
+    return this.authService.auth$.pipe(
+      take(1),
+      map(auth => {
+        if(this.matchUrl(request.url) && auth.authResponse?.accessToken){
+          modifiedRequest = request.clone({
+            setHeaders: {
+              Authorization: `Bearer ${auth.authResponse?.accessToken}`
+            }
+          });
+          return modifiedRequest;
         }
+        return request;
       }),
-      catchError((error: HttpErrorResponse) => {
-        // Handle error responses
-        console.error('Error intercepted:', error);
+      flatMap(req => next.handle(req))
 
-        // Forward the error to the caller
-        return throwError(error);
-      })
-    );
+    )
   }
 }

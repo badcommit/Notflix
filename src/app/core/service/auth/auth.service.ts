@@ -3,6 +3,7 @@ import {BehaviorSubject, catchError, Observable, of, map} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Auth, AuthResponse, emptyAuth, RegInfo, ROLE} from "../auth";
 import jwt_decode from "jwt-decode";
+import {tap} from "rxjs/operators";
 
 
 @Injectable({
@@ -26,6 +27,9 @@ export class AuthService {
       this.http.post<AuthResponse>(`http://localhost:4231/auth/signin`, {email, password})
         .pipe(
           this.decoder(),
+          tap((auth)=>{
+            this.auth = auth;
+          }),
           catchError((err) => {
             console.error(err)
             this.auth = emptyAuth;
@@ -33,7 +37,6 @@ export class AuthService {
           })
         )
         .subscribe((res) => {
-          this.auth = res;
           observer.next(!!res.authResponse);
           observer.complete()
         })
@@ -45,6 +48,9 @@ export class AuthService {
       this.http.patch<AuthResponse>(`http://localhost:4231/auth/userupdate`, {role, email: this.auth.email})
         .pipe(
           this.decoder(),
+          tap((auth)=>{
+            this.auth = auth;
+          }),
           catchError((err) => {
             console.error(err)
             this.auth = emptyAuth;
@@ -52,7 +58,6 @@ export class AuthService {
           })
         )
         .subscribe((res) => {
-          this.auth = res;
 
           observer.next(!!res.authResponse);
           observer.complete()
@@ -60,15 +65,14 @@ export class AuthService {
     })
 
   }
-  
+
 
   logout(): void {
+    console.log("logout")
     this.auth = emptyAuth;
   }
 
-  setAuth(auth: Auth){
-    this.auth = auth;
-  }
+
 
   decoder = () => {
     return map((r: AuthResponse) => {
@@ -90,26 +94,30 @@ export class AuthService {
       this.http.post<AuthResponse>(`http://localhost:4231/auth/signup`, v)
         .pipe(
           this.decoder(),
+          tap((auth)=>{
+            this.auth = auth;
+          }),
           catchError(err => {
             console.error(err)
             this.auth = emptyAuth;
             return of(this.auth)
           })
         ).subscribe(res => {
-        this.auth = res;
         observer.next(!!res.authResponse);
         observer.complete()
       })
     })
   }
 
-  set auth(auth: Auth) {
+  private set auth(auth: Auth) {
+    console.log(`set auth`)
+    console.log(auth)
     this._auth = auth
     this.isAuthenticatedSubject.next(this._auth);
     localStorage.setItem('auth', JSON.stringify(this._auth))
   }
 
-  get auth(): Auth {
+  private get auth(): Auth {
     return this._auth;
   }
 

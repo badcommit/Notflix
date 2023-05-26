@@ -7,19 +7,22 @@ import {MovielistRoutingModule} from "./movielist-routing.module";
 import {CoreModule} from "../core/core.module";
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
+import {MovieCarouselComponent} from "./component/carousel/movie-carousel.component";
+
 
 @NgModule({
   declarations: [
     MovieComponent,
-    MovielistPageComponent
+    MovielistPageComponent,
+    MovieCarouselComponent
   ],
-    imports: [
-        CommonModule,
-        SharedModule,
-        MovielistRoutingModule,
-        CoreModule,
-        InfiniteScrollModule
-    ]
+  imports: [
+    CommonModule,
+    SharedModule,
+    MovielistRoutingModule,
+    CoreModule,
+    InfiniteScrollModule,
+  ]
 })
 export class MovielistModule {
 }

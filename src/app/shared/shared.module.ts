@@ -14,13 +14,15 @@ import { PageBgComponent } from './layout/page-bg/page-bg.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {CoreModule} from "../core/core.module";
 import {ChoosePlanComponent} from "./components/choose-plan/choose-plan.component";
+import { PageFooterComponent } from './layout/page-footer/page-footer.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     PageBgComponent,
-    ChoosePlanComponent
+    ChoosePlanComponent,
+    PageFooterComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import {ChoosePlanComponent} from "./components/choose-plan/choose-plan.componen
     HeaderComponent,
     PageBgComponent,
     MatDialogModule,
-    ChoosePlanComponent
+    ChoosePlanComponent,
+    PageFooterComponent
   ]
 })
 export class SharedModule {

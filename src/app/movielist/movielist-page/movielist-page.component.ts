@@ -3,6 +3,7 @@ import {MovielistService} from "../../core/service/movie/movielist.service";
 import {first, Subscription, take} from "rxjs";
 import {Movie} from "../../core/service/movie";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Slide} from "../component/carousel/movie-carousel.component";
 
 @Component({
   selector: 'app-movielist-page',
@@ -17,11 +18,12 @@ export class MovielistPageComponent implements OnInit, OnDestroy {
 
   loadingStatus: { [key: number]: boolean } = {}
 
-  fragmentSubscription!: Subscription
+
 
   constructor(private movieService: MovielistService, private router: Router) {
 
   }
+
 
   ngOnInit() {
     this.movieListSubscription = this.movieService.movieList$.subscribe((v) => {
@@ -44,6 +46,15 @@ export class MovielistPageComponent implements OnInit, OnDestroy {
   onScroll() {
     this.movieService.loadMovieList()
 
+  }
+
+  slides(): Slide[]{
+    return this.movies.slice(0, 5).map(movie => {
+      return {
+        title: movie.title,
+        src: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
+      }
+    })
   }
 
 
