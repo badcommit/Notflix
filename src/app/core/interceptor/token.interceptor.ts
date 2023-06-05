@@ -31,10 +31,10 @@ export class TokenHttpInterceptor implements HttpInterceptor {
     return this.authService.auth$.pipe(
       take(1),
       map(auth => {
-        if(this.matchUrl(request.url) && auth.authResponse?.accessToken){
+        if(this.matchUrl(request.url) && auth.authToken?.accessToken){
           modifiedRequest = request.clone({
             setHeaders: {
-              Authorization: `Bearer ${auth.authResponse?.accessToken}`
+              Authorization: `Bearer ${auth.authToken?.accessToken}`
             }
           });
           return modifiedRequest;

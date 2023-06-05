@@ -1,5 +1,5 @@
 <div class="header">
-  <div class="logo" style="" routerLink="">
+  <div class="logo"  routerLink="">
     <svg viewBox="0 0 111 30" xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true" role="img" class="default-ltr-cache-mv4tc2">
       <g>
@@ -8,13 +8,13 @@
       </g>
     </svg>
   </div>
-  <div *ngIf="!auth.authResponse; else Authed">
+  <div *ngIf="!auth.authToken; else Authed">
   <button mat-flat-button color="warn" routerLink="/login">Sign In
   </button>
   </div>
   <ng-template #Authed>
     <div style="display: flex; flex-direction: row; align-items: center; gap: 20px">
-      <div  style="color: white;">
+      <div  style="color: gold;">
         {{auth.username}}
       </div>
     <button mat-flat-button color="warn" (click)="signOut()">Sign Out

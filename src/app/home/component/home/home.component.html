@@ -7,10 +7,7 @@
       <mat-label>Email address</mat-label>
       <input matInput>
     </mat-form-field>
-    <button *ngIf="isLogin$() | async " type="button" mat-flat-button color="warn" [routerLink]="['/movies']">Get
-      Started >
-    </button>
-    <button *ngIf="!(isLogin$() | async) " type="button" mat-flat-button color="warn" [routerLink]="['/register']">Get
+    <button type="button" mat-flat-button color="warn" [routerLink]="(isLogin$() | async) ? ['/movies']: ['/register']">Get
       Started >
     </button>
   </form>

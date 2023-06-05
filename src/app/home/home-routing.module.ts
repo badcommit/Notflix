@@ -7,8 +7,6 @@ import {UpdateUserPageComponent} from "./update-user-page/update-user-page.compo
 import {AuthGuard} from "../core/guard/auth.guard";
 import {RoleGuard} from "../core/guard/role.guard";
 
-//when attach Signin component under Homepage children component, it will not work
-//just a workaround
 const routes: Routes = [
   {
     path: "",
@@ -18,6 +16,7 @@ const routes: Routes = [
       {
         path: "",
         component: HomeComponent,
+        pathMatch: 'full',
         outlet: "home"
       },
     ]
@@ -30,6 +29,7 @@ const routes: Routes = [
       {
         path: "",
         component: SigninComponent,
+        pathMatch: 'full',
         outlet: "home"
       },
     ]

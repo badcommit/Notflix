@@ -4,7 +4,7 @@
     <h1>Create a Username && Add your Tmdb Api_Key </h1>
     <p>Just a few more steps and you're done!
       We hate paperwork, too.</p>
-    <form class="tmdb-form" [formGroup]="form" (ngSubmit)="next()" >
+    <form class="tmdb-form" [formGroup]="form" (ngSubmit)="submit()" >
       <mat-form-field class="example-full-width" >
         <mat-label>Username</mat-label>
         <input matInput placeholder="Username" value="" formControlName="username">

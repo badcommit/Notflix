@@ -23,7 +23,7 @@ export class MovielistService {
   constructor(private http: HttpClient) { }
   static discover_movie_url: string = 'https://api.themoviedb.org/3/discover/movie'
 
-  loadMovieList(){
+  loadMoreMovieList(){
 
     this.http.get<ResponseResult<Movie>>(`${MovielistService.discover_movie_url}?api_key=${environment.tmdbApiKey}&page=${this.loadedPage}`)
       .pipe(

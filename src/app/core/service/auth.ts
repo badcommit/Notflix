@@ -1,18 +1,19 @@
 export type ROLE = 'USER' | 'ADMIN' | "SUPERUSER"
-export interface AuthResponse {
+export interface AuthToken {
   readonly  accessToken: string;
   readonly role: ROLE
 }
 
 export interface Auth {
 
-  authResponse: AuthResponse | null
+  authToken: AuthToken | null
   username?: string
   email?: string
+  tmdb_key?:string
 }
 
 export const emptyAuth: Auth = {
-  authResponse: null
+  authToken: null
 }
 
 export interface RegInfo{

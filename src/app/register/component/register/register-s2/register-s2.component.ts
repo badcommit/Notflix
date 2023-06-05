@@ -52,7 +52,7 @@ export class RegisterS2Component implements OnInit{
 
 
 
-  next() {
+  submit() {
     this.nextStep.emit({
       username: this.form.value.username,
       tmdb_key: this.form.value.tmdb_key

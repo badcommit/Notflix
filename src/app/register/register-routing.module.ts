@@ -7,10 +7,6 @@ const routes: Routes = [
     path: "",
     component: RegisterPageComponent
   },
-  {
-    path: "register",
-    loadChildren: () => import('../register/register.module').then(m => m.RegisterModule)
-  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

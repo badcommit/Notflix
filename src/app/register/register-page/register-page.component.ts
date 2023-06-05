@@ -1,22 +1,23 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {IRouterUrlConstant} from "../../constant";
-import {ROUTER_URL_CONSTANT} from "../../core/service/token/router-constant.token.service";
 import {RegForm1} from "../component/register/register-s1/register-s1.component";
 import {RegForm2} from "../component/register/register-s2/register-s2.component";
 import {AuthService} from "../../core/service/auth/auth.service";
 import {ROLE} from "../../core/service/auth";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.scss']
 })
-export class RegisterPageComponent implements OnInit {
-  step = 1
+export class RegisterPageComponent implements OnInit, OnDestroy {
+  step: number = 1
 
   regS1: RegForm1 | null = null
   regS2: RegForm2 | null = null
+
+  subscription!: Subscription
 
 
   get regform(): RegForm1 & RegForm2{
@@ -26,16 +27,16 @@ export class RegisterPageComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router,  @Inject(ROUTER_URL_CONSTANT) private url_constant: IRouterUrlConstant, private authService: AuthService){
+  constructor(private router: Router, private authService: AuthService){
   }
 
   finish(role: ROLE){
-    this.authService.register({
+    this.subscription = this.authService.register({
       ...this.regform,
       role
-    }).subscribe(v => {
+    }).subscribe((success) => {
 
-      if(v){
+      if(success){
         this.router.navigate(['/movies'])
       } else {
         this.router.navigate(['/register'])
@@ -57,7 +58,14 @@ export class RegisterPageComponent implements OnInit {
 
   }
 
+  ngOnDestroy(): void {
+    
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
+  }
+
   async home(){
-    await this.router.navigate([this.url_constant.HOME])
+    await this.router.navigate(["/"])
   }
 }

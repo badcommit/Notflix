@@ -12,4 +12,8 @@ export type IRouterUrlConstant = typeof routerUrlConstant
 
 export const ROOT_SLASH = "/"
 
+export const SERVER_ENV  = {
+  server: "http://localhost:4231"
+}
+
 

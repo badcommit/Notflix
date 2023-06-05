@@ -15,7 +15,7 @@ export class HomeComponent {
 
   isLogin$(){
     return this.authService.auth$.pipe(
-      map(auth => auth.authResponse != null)
+      map(auth => auth.authToken != null)
     )
   }
 }

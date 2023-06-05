@@ -9,13 +9,16 @@
     <form class="user-form" [formGroup]="regform" (ngSubmit)="next()">
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="xx@xx" name="email" value="" formControlName="email">
+        <input matInput placeholder="user@com" name="email" value="" formControlName="email">
         <mat-spinner *ngIf="email.pending" matSuffix diameter="16" style="display: inline-flex"></mat-spinner>
         <mat-hint *ngIf="email?.invalid && email?.touched && email?.hasError('required')" style="color:red">
           Email is Required
         </mat-hint>
         <mat-hint *ngIf="email?.invalid && email?.touched && email?.hasError('emailExists')" style="color:red">
           Email Exists
+        </mat-hint>
+        <mat-hint *ngIf="email?.invalid && email?.touched && email?.hasError('email')" style="color:red">
+          Not a valid email address
         </mat-hint>
       </mat-form-field>
 

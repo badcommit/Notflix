@@ -30,7 +30,7 @@ export class MovielistPageComponent implements OnInit, OnDestroy {
       this.movies = v
     })
 
-    this.movieService.loadMovieList()
+    this.movieService.loadMoreMovieList()
 
   }
 
@@ -44,7 +44,7 @@ export class MovielistPageComponent implements OnInit, OnDestroy {
   }
 
   onScroll() {
-    this.movieService.loadMovieList()
+    this.movieService.loadMoreMovieList()
 
   }
 

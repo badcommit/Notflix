@@ -18,8 +18,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
   ngOnInit() {
     this.authSubscription = this.authService.auth$.subscribe((auth) => {
-      console.log('what is auth')
-      console.log(auth)
       this.auth = auth
       this.changeDetectorRef.markForCheck()
     })

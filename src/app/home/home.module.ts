@@ -6,6 +6,7 @@ import {SigninComponent} from "./component/signin/signin.component";
 import {SharedModule} from "../shared/shared.module";
 import {HomeRoutingModule} from "./home-routing.module";
 import { UpdateUserPageComponent } from './update-user-page/update-user-page.component';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -19,7 +20,8 @@ import { UpdateUserPageComponent } from './update-user-page/update-user-page.com
   imports: [
     CommonModule,
     SharedModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    CoreModule
   ]
 })
 export class HomeModule { }
